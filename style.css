@@ -1,0 +1,114 @@
+/* default style rules */
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body {
+    margin: 0px;
+    background-color: wheat;
+}
+
+
+/* making the macro-layout( page-wide layout ) */
+body {
+    width: 100vw;
+    height: 100vh;
+    padding: 0% 5%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+body > * {
+    border: 2px solid black;
+}
+body > nav {
+    width: 100%;
+
+}
+body > section#advice {
+    width: 65%;
+    height: 80%;
+}
+body > section#liked-advice {
+    width: 30%;
+    height: 80%;
+}
+body > section#controls {
+    width: 100%;
+}
+
+
+/* styling the navbar */
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+}
+nav svg {
+    width: 50px;
+    height: 50px;
+    stroke: black;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+}
+nav > a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: 10px;
+    color: black;
+}
+nav > a > span {
+    font-size: 20px;
+}
+nav > span {
+    text-transform: capitalize;
+    color: black;
+}
+nav > span > a {
+    color: black;
+}
+
+
+/* styling the advice section */
+section#advice {
+    border: none;
+    padding: 40px 0px 0px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+section#advice > h1 {
+    font-size: 48px;
+    width: 80%;
+    margin: 0px;
+}
+section#advice > span {
+    font-size: 48px;
+    display: block;
+}
+
+
+
+/* styling the liked advice section */
+section#liked-advice {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 20px;
+    padding: 20px 20px 0px;
+    overflow: auto;
+    border: none;
+}
+section#liked-advice > div.advice {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 10px;
+}
+section#liked-advice > div.advice > span:nth-child(1) {
+    
+}
