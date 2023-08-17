@@ -10,6 +10,12 @@
 
     <!-- link to styling file -->
     <link rel="stylesheet" href="./style.css">
+
+    <!-- link to the source code pro font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,
+    wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav>
@@ -37,109 +43,35 @@
             For every complex problem there is an answer that is clear, simple, and wrong.
         </h1>
 
-        <span class="far fa-heart"></span>
+        <span class="far fa-heart" id="fav-icon"></span>
     </section>
 
     <section id="liked-advice">
-        <div class="advice">
-            <span class="fas fa-heart"></span>
+        <h2>favourites</h2>
 
-            <span>
-                If you think your headphones are dying, check the socket for fluff with a straightened paperclip
-            </span>
-        </div>
-        
-        <div class="advice">
-            <span class="fas fa-heart"></span>
+        <div class="loading">
+            <div id="loading-ctn">
+                <div id="loader"></div>
+                <span>loading favourites...</span>
+            </div>
 
-            <span>
-                If you think your headphones are dying, check the socket for fluff with a straightened paperclip
-            </span>
-        </div>
-        
-        <div class="advice">
-            <span class="fas fa-heart"></span>
-
-            <span>
-                If you think your headphones are dying, check the socket for fluff with a straightened paperclip
-            </span>
-        </div>
-        
-        <div class="advice">
-            <span class="fas fa-heart"></span>
-
-            <span>
-                If you think your headphones are dying, check the socket for fluff with a straightened paperclip
-            </span>
-        </div>
-        
-        <div class="advice">
-            <span class="fas fa-heart"></span>
-
-            <span>
-                If you think your headphones are dying, check the socket for fluff with a straightened paperclip
-            </span>
-        </div>
-        
-        <div class="advice">
-            <span class="fas fa-heart"></span>
-
-            <span>
-                If you think your headphones are dying, check the socket for fluff with a straightened paperclip
-            </span>
-        </div>
-        
-        <div class="advice">
-            <span class="fas fa-heart"></span>
-
-            <span>
-                If you think your headphones are dying, check the socket for fluff with a straightened paperclip
-            </span>
-        </div>
-        
-        <div class="advice">
-            <span class="fas fa-heart"></span>
-
-            <span>
-                If you think your headphones are dying, check the socket for fluff with a straightened paperclip
-            </span>
-        </div>
-        
-        <div class="advice">
-            <span class="fas fa-heart"></span>
-
-            <span>
-                If you think your headphones are dying, check the socket for fluff with a straightened paperclip
-            </span>
-        </div>
-        
-        <div class="advice">
-            <span class="fas fa-heart"></span>
-
-            <span>
-                If you think your headphones are dying, check the socket for fluff with a straightened paperclip
-            </span>
-        </div>
-        
-        <div class="advice">
-            <span class="fas fa-heart"></span>
-
-            <span>
-                If you think your headphones are dying, check the socket for fluff with a straightened paperclip
-            </span>
+            <div id="error-ctn">
+                <span class="fas fa-exclamation-triangle"></span>
+                <span>error loading favourites...</span>
+            </div>
         </div>
     </section>
 
     <section id="controls">
-        <button id="cancelBtn">
-            cancel
-        </button>
-
         <div>
             <div id="loader"></div>
 
-            <span>fetching advice</span>
+            <span>fetching new advice</span>
         </div>
+
+        <button id="cancelBtn">
+            cancel
+        </button>
     </section>
 
     <script src="./script.js"></script>

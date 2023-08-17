@@ -2,6 +2,7 @@
 * {
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --decor-font: 'Source Code Pro', monospace;
 }
 body {
     margin: 0px;
@@ -11,30 +12,27 @@ body {
 
 /* making the macro-layout( page-wide layout ) */
 body {
-    width: 100vw;
-    height: 100vh;
+    inline-size: clamp( 100vw, 100vw, 1800px );
+    block-size: 100vh;
     padding: 0% 5%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-}
-body > * {
-    border: 2px solid black;
+    align-items: center;
 }
 body > nav {
-    width: 100%;
-
+    inline-size: 100%;
 }
 body > section#advice {
-    width: 65%;
-    height: 80%;
+    inline-size: 65%;
+    block-size: 80%;
 }
 body > section#liked-advice {
-    width: 30%;
-    height: 80%;
+    inline-size: 30%;
+    block-size: 70%;
 }
 body > section#controls {
-    width: 100%;
+    inline-size: 100%;
 }
 
 
@@ -47,8 +45,8 @@ nav {
     border: none;
 }
 nav svg {
-    width: 50px;
-    height: 50px;
+    inline-size: 3.125rem;
+    block-size: 3.125rem;
     stroke: black;
     stroke-linejoin: round;
     stroke-linecap: round;
@@ -61,7 +59,8 @@ nav > a {
     color: black;
 }
 nav > a > span {
-    font-size: 20px;
+    font-size: 1.25rem;
+    font-family: var(--decor-font);
 }
 nav > span {
     text-transform: capitalize;
@@ -75,19 +74,22 @@ nav > span > a {
 /* styling the advice section */
 section#advice {
     border: none;
-    padding: 40px 0px 0px;
+    padding: 2.5rem 0rem 0rem;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    opacity: 0;
+    transition: opacity 0.5s;
     justify-content: space-between;
 }
 section#advice > h1 {
-    font-size: 48px;
-    width: 80%;
-    margin: 0px;
+    font-size: clamp( 2rem, calc( 2.5vw + 0.5rem ), 5rem );
+    inline-size: 80%;
+    margin: 0rem;
+    font-family: var(--decor-font);
 }
 section#advice > span {
-    font-size: 48px;
+    font-size: clamp( 2rem, calc( 2.5vw + 0.5rem ), 5rem );
     display: block;
 }
 
@@ -97,18 +99,192 @@ section#advice > span {
 section#liked-advice {
     display: flex;
     flex-direction: column;
-    flex-wrap: nowrap;
     gap: 20px;
-    padding: 20px 20px 0px;
-    overflow: auto;
     border: none;
 }
-section#liked-advice > div.advice {
+section#liked-advice > div.successful {
     display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    gap: 10px;
+    flex-direction: column;
+    gap: 5px;
+    overflow: auto;
 }
-section#liked-advice > div.advice > span:nth-child(1) {
-    
+section#liked-advice > div.loading, section#liked-advice > div.error {
+    flex-direction: row;
+    align-items: center;
+} 
+section#liked-advice > h2 {
+    margin: 0px;
+    text-transform: capitalize;
+}
+section#liked-advice > div > div.advice {
+    display: flex;
+    align-items: center;
+    padding: 0.625rem 0.9375rem;
+    gap: 15px;
+}
+
+/* making style changes based on the loading state of the favourited advices */
+section#liked-advice > div.loading > div#loading-ctn {
+    display: flex;
+    align-items: center;
+    padding: 0.625rem 0.9375rem;
+    gap: 15px;
+}
+section#liked-advice > div.loading > div#loading-ctn ,
+section#liked-advice > div.error > div#error-ctn {
+    display: flex;
+    align-items: center;
+    padding: 0.625rem 0.9375rem;
+    gap: 15px;
+}
+section#liked-advice > div.loading > div#loading-ctn > div#loader {
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+    border-radius: 50%;
+    border: medium solid wheat;
+    border-top: medium solid black;
+    border-left: medium solid black;
+    animation: spin 1s linear infinite running;
+}
+section#liked-advice > div.loading > div#error-ctn {
+    display: none;
+}
+section#liked-advice > div.error > div#loading-ctn {
+    display: none;
+}
+section#liked-advice > div.successful > div#error-ctn,
+section#liked-advice > div.successful > div#loading-ctn {
+    display: none;
+}
+section#liked-advice > div > div.advice.selected {
+    background-color: black;
+    color: wheat;
+    border-radius: 10px;
+}
+
+
+
+/* styling the controls section */
+section#controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: none;
+}
+section#controls > button {
+    font-size: 1rem;
+    background-color: black;
+    color: white;
+    outline: none;
+    border: none;
+    padding: 0.625rem 1.25rem;
+    text-transform: capitalize;
+    border-radius: 10px;
+}
+section#controls > div {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+section#controls > div > div#loader {
+    inline-size: 2.5rem;
+    block-size: 2.5rem;
+    border-radius: 50%;
+    border: medium solid wheat;
+    border-top: medium solid black;
+    border-left: medium solid black;
+    animation: spin 1s linear infinite running;
+}
+section#controls > div > span {
+    text-transform: capitalize;
+}
+
+
+
+
+@keyframes spin {
+    from {
+        transform: rotate( 0deg );
+    }
+
+    to {
+        transform: rotate( 360deg );
+    }
+}
+
+
+/* adding hover interaction for the favourite advice  */
+section#liked-advice > div > div.advice:hover {
+    background-color: black;
+    color: wheat;
+    border-radius: 10px;
+}
+
+
+
+/* adding responsiveness for the page */
+
+
+/* for tablets */
+@media screen and ( max-width: 1000px ) {
+    /* re-making the macro-layout( page-wide layout ) */
+    body {
+        padding: 0% 3%;
+    }
+    body > section#advice {
+        inline-size: 50%;
+    }
+    body > section#liked-advice {
+        inline-size: 40%;
+    }
+}
+
+
+/* for mobile devices */
+@media screen and ( max-width: 500px ) {
+    /* re-arranging the layout */
+    body {
+        align-items: initial;
+        padding: 0% 3%;
+    }
+    body > nav {
+        inline-size: 100%;
+        block-size: 100px;
+    }
+    body > section#advice,
+    body > section#liked-advice {
+        inline-size: 100%;
+        block-size: 50%;
+    }
+
+
+    /* re-styling the navbar */
+    nav > * {
+        display: block;
+        inline-size: 100%;
+    }
+    nav svg {
+        inline-size: 1.875rem;
+        block-size: 1.875rem;
+    }
+
+
+    /* re-styling the advice section */
+    section#advice {
+        padding: 1.25rem 0rem 0rem;
+        overflow: auto;
+    }
+
+
+    /* re-arranging the liked-advice section */
+    section#liked-advice {
+        order: 2;
+    }
+
+
+    /* re-styling the controls section */
+    section#controls {
+        padding: 20px 0px;
+        order: 1;
+    }
 }
