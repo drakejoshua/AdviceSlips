@@ -226,7 +226,7 @@ section#liked-advice > div > div.advice:hover {
 
 
 /* for tablets */
-@media screen and ( max-width: 1000px ) {
+@media screen and ( max-width: 62.5rem ) {
     /* re-making the macro-layout( page-wide layout ) */
     body {
         padding: 0% 3%;
@@ -241,7 +241,7 @@ section#liked-advice > div > div.advice:hover {
 
 
 /* for mobile devices */
-@media screen and ( max-width: 500px ) {
+@media screen and ( max-width: 31.25rem ) {
     /* re-arranging the layout */
     body {
         align-items: initial;
